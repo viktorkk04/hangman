@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -49,12 +50,13 @@ public class HangmanTest {
 
     @Test
     public void guessCaseInsensitiv(){
-        final Hangman game = new Hangman("KITTEN");
+        final Hangman game = new Hangman("kitten");
 
         game.guess('N');
-
-        assertTrue(game.getGuessedLetters()[5] == 'n');
+        try{
+            assertTrue(game.getGuessedLetters()[5] == 'n');
+        } catch (java.lang.AssertionError e){
+            fail("should be case insensitive");
+        }
     }
-
-
 }
