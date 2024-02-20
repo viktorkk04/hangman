@@ -11,16 +11,21 @@ import org.junit.Test;
 import classes.*;
 
 public class HangmanTest {
+
+    final String[] testWords = {"Kitten", "space", "fisk", "mål"};
+
     @Test
     public void charArraySet(){
-        final Hangman game = new Hangman("fisk");
+        for (String word : testWords){
+            final Hangman game = new Hangman(word);
 
-        char[] charArray = game.getGuessedLetters();
+            char[] charArray = game.getGuessedLetters();
 
-        assertEquals(4, charArray.length);
-        
-        for (char letter : charArray){
-            assertSame(null, letter, '_');
+            assertEquals(word.length(), charArray.length);
+            
+            for (char letter : charArray){
+                assertSame(null, letter, '_');
+            }
         }
     }
 
@@ -50,6 +55,18 @@ public class HangmanTest {
 
     @Test
     public void guessCaseInsensitiv(){
+        final Hangman game = new Hangman("KITTEN");
+
+        game.guess('n');
+        try{
+            assertTrue(game.getGuessedLetters()[5] == 'n');
+        } catch (java.lang.AssertionError e){
+            fail("should be case insensitive");
+        }
+    }
+
+    @Test
+    public void guessCaseInsensitiv2(){
         final Hangman game = new Hangman("kitten");
 
         game.guess('N');
