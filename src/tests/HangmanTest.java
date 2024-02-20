@@ -76,4 +76,20 @@ public class HangmanTest {
             fail("should be case insensitive");
         }
     }
+
+    @Test
+    public void loseAllLives(){
+        final Hangman game = new Hangman("kitten");
+
+        game.guess('Z');
+        game.guess('p');
+        game.guess('q');
+        game.guess('O');
+        game.guess('æ');
+        game.guess('Å');
+
+        assertFalse(game.isAlive());
+    }
+
+
 }
