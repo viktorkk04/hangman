@@ -81,11 +81,17 @@ public class HangmanTest {
     public void loseAllLives(){
         final Hangman game = new Hangman("kitten");
 
+        assertTrue(game.isAlive());
         game.guess('Z');
+        assertTrue(game.isAlive());
         game.guess('p');
+        assertTrue(game.isAlive());
         game.guess('q');
+        assertTrue(game.isAlive());
         game.guess('O');
+        assertTrue(game.isAlive());
         game.guess('æ');
+        assertTrue(game.isAlive());
         game.guess('Å');
 
         assertFalse(game.isAlive());
