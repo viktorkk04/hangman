@@ -6,6 +6,7 @@ public class Hangman {
     int lives = 6;
     private String secretWord;
     private char[] guessedLetters;
+    private char[] incorrectGuessesArray;
 
     private int incorrectGuesses;
 
