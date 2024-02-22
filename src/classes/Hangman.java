@@ -58,7 +58,8 @@ public class Hangman {
             p.text(guessedLetters[i], p.width/2+20*i-
                 guessedLetters.length*20/2, p.height/2);
         }
-        
+        p.textSize(32);
+        p.text("Lives left: " + (lives - incorrectGuesses), 20, 40);
     }
         else{
             p.textSize(64);
