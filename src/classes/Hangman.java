@@ -3,18 +3,26 @@ package classes;
 import processing.core.PApplet;
 
 public class Hangman {
+    int lives = 6;
     private String secretWord;
     private char[] guessedLetters;
 
-    public Hangman(String word){
-        secretWord = word.toLowerCase();
-        guessedLetters = new char[secretWord.length()];
+    private int incorrectGuesses;
 
-        //init partial word, and set all
-        //letters to '_'
-        guessedLetters = new char[word.length()];
-        for (int i = 0; i < guessedLetters.length; i++){
+    public Hangman(String word){
+        if (incorrectGuesses < lives){
+
+            incorrectGuesses = 0;
+
+            secretWord = word.toLowerCase();
+            guessedLetters = new char[secretWord.length()];
+
+            //init partial word, and set all
+            //letters to '_'
+            guessedLetters = new char[word.length()];
+            for (int i = 0; i < guessedLetters.length; i++){
             guessedLetters[i] = '_';
+            }
         }
     }
 
@@ -32,6 +40,11 @@ public class Hangman {
               letterInSecretWord = true;
             }
           }
+
+        if (!letterInSecretWord) {
+            incorrectGuesses++; 
+        }
+
         return letterInSecretWord;
     }
 
@@ -46,6 +59,6 @@ public class Hangman {
     }
 
     public boolean isAlive(){
-        return true;
+        return incorrectGuesses < lives;
     }
 }
