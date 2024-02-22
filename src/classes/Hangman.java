@@ -10,8 +10,7 @@ public class Hangman {
     private int incorrectGuesses;
 
     public Hangman(String word){
-        //if (incorrectGuesses < lives){
-
+        
             incorrectGuesses = 0;
 
             secretWord = word.toLowerCase();
@@ -23,7 +22,7 @@ public class Hangman {
             for (int i = 0; i < guessedLetters.length; i++){
             guessedLetters[i] = '_';
             }
-        //}
+        
     }
 
     public char[] getGuessedLetters(){
@@ -31,6 +30,7 @@ public class Hangman {
     }
 
     public boolean guess(char letter){
+        
         char lowerCase = Character.toLowerCase(letter);
         
         boolean letterInSecretWord = false;
@@ -40,21 +40,29 @@ public class Hangman {
               letterInSecretWord = true;
             }
           }
-
+        
         if (!letterInSecretWord) {
             incorrectGuesses++; 
         }
-
+    
         return letterInSecretWord;
+    
     }
 
     public void drawGuessedLetters(PApplet p){
+        if (incorrectGuesses < lives){
         //draw word on screen
         p.textSize(32);
         for (int i = 0; i < guessedLetters.length; i++){
             //draw guessed letter in center of the screen
             p.text(guessedLetters[i], p.width/2+20*i-
                 guessedLetters.length*20/2, p.height/2);
+        }
+        
+    }
+        else{
+            p.textSize(64);
+            p.text("Game Over", p.width/4, p.height/2);
         }
     }
 
