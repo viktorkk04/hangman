@@ -10,7 +10,7 @@ public class Hangman {
     private int incorrectGuesses;
 
     public Hangman(String word){
-        if (incorrectGuesses < lives){
+        //if (incorrectGuesses < lives){
 
             incorrectGuesses = 0;
 
@@ -23,7 +23,7 @@ public class Hangman {
             for (int i = 0; i < guessedLetters.length; i++){
             guessedLetters[i] = '_';
             }
-        }
+        //}
     }
 
     public char[] getGuessedLetters(){
